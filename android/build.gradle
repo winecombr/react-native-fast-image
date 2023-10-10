@@ -43,8 +43,18 @@ android {
     sourceSets {
         main {
             java {
+                if (isNewArchitectureEnabled()) {
+                    srcDirs += [
+                        "src/main/java",
+                    ]
+                } else {
+                    srcDirs += [
+                        "src/main/java",
+                        "src/paper/java"
+                    ]
+                }
+
                 if (safeExtGet('excludeAppGlideModule', false)) {
-                    srcDir "src"
                     exclude "**/FastImageGlideModule.java"
                 }
             }
